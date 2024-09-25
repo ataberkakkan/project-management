@@ -19,7 +19,9 @@ export const getTasks = async (req: Request, res: Response): Promise<void> => {
     });
     res.status(200).json(tasks);
   } catch (error: any) {
-    res.status(500).json({ message: `Error updating tasks: ${error.message}` });
+    res
+      .status(500)
+      .json({ message: `Error retrieving tasks: ${error.message}` });
   }
 };
 
@@ -82,8 +84,6 @@ export const updateTaskStatus = async (
     });
     res.status(200).json(updatedTask);
   } catch (error: any) {
-    res
-      .status(500)
-      .json({ message: `Error retrieving tasks: ${error.message}` });
+    res.status(500).json({ message: `Error updating tasks: ${error.message}` });
   }
 };
