@@ -56,7 +56,7 @@ export interface Task {
 
   author?: User;
   assignee?: User;
-  comments: Comment[];
+  comments?: Comment[];
   attachments?: Attachment[];
 }
 
