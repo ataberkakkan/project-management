@@ -1,3 +1,4 @@
+import { getUserTasks } from "./../../../server/src/controllers/taskController";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Project {
@@ -97,6 +98,13 @@ export const api = createApi({
           ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
           : [{ type: "Tasks" as const }],
     }),
+    getTasksByUser: build.query<Task[], number>({
+      query: (userId) => `/tasks/user/${userId}`,
+      providesTags: (result, error, userId) =>
+        result
+          ? result.map(({ id }) => ({ type: "Tasks", id }))
+          : [{ type: "Tasks", id: userId }],
+    }),
     createTask: build.mutation<Task, Partial<Task>>({
       query: (task) => ({
         url: "/tasks",
@@ -138,4 +146,5 @@ export const {
   useGetUsersQuery,
   useGetTeamsQuery,
   useSearchQuery,
+  useGetTasksByUserQuery,
 } = api;
