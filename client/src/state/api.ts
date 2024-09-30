@@ -1,4 +1,3 @@
-import { getUserTasks } from "./../../../server/src/controllers/taskController";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Project {
